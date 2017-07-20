@@ -1,13 +1,14 @@
 import React from 'react';
 import ChatsNavbar from '../ChatsNavbar/ChatsNavbar';
 import UsersList from '../UsersList/UsersList';
-import ChatsMenu from '../ChatsMenu/ChatsMenu';
+import ChatsMenuContainer from '../../containers/ChatsMenuContainer';
 
 import WebSockets from '../../containers/WebSockets';
 
 import MessagesNavbar from '../MessagesNavbar/MessagesNavbar';
 import MessagesList from '../MessagesList/MessagesList';
 import MessagesInput from '../MessagesInput/MessagesInput';
+import ChatsList from '../ChatsList/ChatsList';
 
 // import * as actions from '../../actions/index';
 
@@ -66,7 +67,8 @@ class Chats extends React.Component {
 						onMenuShow={this.handleMenuShow}
 						data={this.state}
 					/>
-					<ChatsMenu data={this.state} />
+					<ChatsMenuContainer {...this.state} />
+					<ChatsList data={this.state} />
 					<UsersList data={this.state} />
 				</aside>
 				<div

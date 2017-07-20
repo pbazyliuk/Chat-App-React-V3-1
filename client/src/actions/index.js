@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { history } from '../history/history';
 import * as ws from '../utils/utils';
+import { reset } from 'redux-form';
 
 import {
 	AUTH_USER,
@@ -13,7 +14,9 @@ import {
 	GET_MESSAGES,
 	SEARCH_MESSAGE_VAL,
 	SEARCH_USER_VAL,
-	SAVE_AUTH_USER
+	SAVE_AUTH_USER,
+	GET_ALL_CHATS,
+	ADD_CHAT
 } from '../actionsTypes/index.js';
 
 const ROOT_URL = 'http://localhost:8090';
@@ -140,5 +143,48 @@ export function searchUserVal(value) {
 export function searchMessageVal(value) {
 	return function(dispatch) {
 		dispatch({ type: SEARCH_MESSAGE_VAL, payload: value });
+	};
+}
+
+export function addChat(data) {
+	return function(dispatch) {
+		axios
+			.post(`${ROOT_URL}/api/chats`, data)
+			.then(response => {
+				// If request is good...
+				// - Update state to indicate user is authenticated
+				console.error('Add Chat', response.data);
+				// dispatch({ type: GET_MESSAGES, payload: response.data });
+			})
+			.catch(() => {
+				// If request is bad...
+				// - Show an error to the user
+				dispatch(authError('Some problems occurs with users send message!'));
+			});
+	};
+}
+
+export function getAllChats(data) {
+	return function(dispatch) {
+		axios
+			.get(`${ROOT_URL}/api/chats`)
+			.then(response => {
+				// If request is good...
+				// - Update state to indicate user is authenticated
+				console.error('Get All Chats', response.data);
+				dispatch({ type: GET_ALL_CHATS, payload: response.data });
+			})
+			.catch(() => {
+				// If request is bad...
+				// - Show an error to the user
+				dispatch(authError('Some problems occurs with users send message!'));
+			});
+	};
+}
+
+export function clearForm(name) {
+	console.log('clear form action');
+	return function(dispatch) {
+		dispatch(reset(name));
 	};
 }

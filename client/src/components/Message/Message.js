@@ -8,7 +8,7 @@ class Message extends React.Component {
 	render() {
 		const { text, sentAt, userName, isLogged, firstname } = this.props;
 
-		console.log(this.props);
+		// console.log(this.props);
 		// console.log(users);
 
 		return (
@@ -45,14 +45,22 @@ class Message extends React.Component {
 					<div
 						className={
 							isLogged === true
-								? firstname === userName ? styles['user-message__text-cotainer-active-author'] : styles['user-message__text-cotainer-active']
+								? firstname === userName
+									? styles['user-message__text-cotainer-active-author']
+									: styles['user-message__text-cotainer-active']
 								: styles['user-message__text-cotainer']
 						}
 					>
 						<span className={styles['user-message__text-author']}>
 							{userName}
 						</span>
-						<div className={ firstname === userName ? styles['user-message__text-message-author'] : styles['user-message__text-message']}>
+						<div
+							className={
+								firstname === userName
+									? styles['user-message__text-message-author']
+									: styles['user-message__text-message']
+							}
+						>
 							{text}
 						</div>
 					</div>
@@ -72,8 +80,8 @@ class Message extends React.Component {
 	}
 }
 
-Message.propTypes = {
-	message: PropTypes.object.isRequired
-};
+// Message.propTypes = {
+// 	message: PropTypes.object.isRequired
+// };
 
 export default Message;

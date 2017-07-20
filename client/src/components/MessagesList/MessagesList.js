@@ -26,8 +26,8 @@ class MessagesList extends React.Component {
 		const { searchMessage, users, firstname } = this.props;
 		var { messages } = this.props;
 
-		console.log('MESSAGES before', messages);
-		console.log('USERS', users);
+		// console.log('MESSAGES before', messages);
+		// console.log('USERS', users);
 
 		function unLoggedUserInMes(messages) {
 			return messages.map(item => {
@@ -41,12 +41,12 @@ class MessagesList extends React.Component {
 			for (let i = 0; i < users.length; i++) {
 				if (users[i].isLogged) {
 					for (let j = 0; j < messages.length; j++) {
-						console.log(
-							'AAA',
-							users[i].firstname,
-							messages[j].userName,
-							users[i].firstname == messages[j].userName
-						);
+						// console.log(
+						// 	'AAA',
+						// 	users[i].firstname,
+						// 	messages[j].userName,
+						// 	users[i].firstname == messages[j].userName
+						// );
 						if (users[i].firstname === messages[j].userName) {
 							// newMsgs.push(messages[j]);
 							// newMsgs[newMsgs.length - 1].isLogged = true;
@@ -76,7 +76,9 @@ class MessagesList extends React.Component {
 						return true;
 					})
 					.map(message => {
-						return <Message {...message} firstname={firstname} />;
+						return (
+							<Message {...message} key={message._id} firstname={firstname} />
+						);
 					})}
 			</ul>
 		);

@@ -27,8 +27,8 @@ class UsersList extends React.Component {
 		const { filterVal } = this.props;
 		const users = this.props.users;
 
-		console.log(this.props);
-		console.log('USERS LIST', users);
+		// console.log(this.props);
+		// console.log('USERS LIST', users);
 		return (
 			<ul
 				className={styles['chat-list']}
@@ -47,7 +47,7 @@ class UsersList extends React.Component {
 						return true;
 					})
 					.map(function(user) {
-						console.log(user);
+						// console.log(user);
 						return <User {...user} key={user._id} />;
 					})}
 			</ul>

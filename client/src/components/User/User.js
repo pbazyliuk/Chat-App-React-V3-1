@@ -10,7 +10,7 @@ class User extends React.Component {
 	render() {
 		const { _id, firstname, isLogged, authenticated } = this.props;
 
-		console.log(isLogged);
+		// console.log(isLogged);
 
 		return (
 			<Link to={`/chat/${_id}`} className={styles['chat-list__link']}>
